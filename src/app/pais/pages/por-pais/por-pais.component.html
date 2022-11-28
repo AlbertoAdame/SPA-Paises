@@ -1,12 +1,18 @@
 <h5>Por País</h5>
-        <form>
-            <input
-                type="text"
-                class="form-control"
-                placeholder="Buscar gifs..." 
-                name="nuevo"
-            >
-        </form>
+<form (ngSubmit)="buscar(termino)">
+    <input 
+        type="text"
+        class="form-control"
+        placeholder="Buscar gifs..." 
+        name="nuevo"
+        [(ngModel)]="termino"
+    >
+</form>
+
+
+<div class="alert alert-danger" *ngIf="error!=''">
+    No se encontró nada con el término {{termino}}
+</div>
 
 <table class="table table-hover">
     <thead>
@@ -19,15 +25,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr > <!-- Esto es lo que tenemos que repetir por cada país que encuentre -->
-            <td> Número </td> <!-- Aquí obtendremos el número de resultado -->
+        <tr *ngFor="let pais of results"> <!-- Esto es lo que tenemos que repetir por cada país que encuentre -->
+            <td> {{results.indexOf(pais)+1}} </td> <!-- Aquí obtendremos el número de resultado -->
             <td>
-                <img class="small-flag" [src]="ngOnInit" > <!-- Aquí obtendremos la url de la bandera --> 
+                <img class="small-flag" [src]="pais.flag" > <!-- Aquí obtendremos la url de la bandera --> 
             </td>
-            <td> Capital, Nombre país</td> <!-- La capital, el nombre del país y la población lo obtendremos de la api -->
-            <td> Población en número</td>
+            <td> {{pais.capital}}, {{pais.name}} </td> <!-- La capital, el nombre del país y la población lo obtendremos de la api -->
+            <td> {{pais.population}}</td>
             <td>
-                <a >Ver...</a> <!-- Esto lo dejamos así de momento -->
+                <!-- <a  [routerLink]="['/routePath']" >Ver...</a> Esto lo dejamos así de momento -->
             </td>
         </tr>
     </tbody>
