@@ -23,4 +23,7 @@ export class PaisService {
     return this.http.get<PaisSearchResponse[]>(`${this.url}${query}`)    
   } 
 
+  country(code:string):Observable<PaisSearchResponse[]>{
+    return this.http.get<PaisSearchResponse[]>(`${this.url}alpha/${code}`)  
+  }
 }

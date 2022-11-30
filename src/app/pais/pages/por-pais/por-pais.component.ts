@@ -14,7 +14,8 @@ export class PorPaisComponent implements OnInit {
   }
   paises : PaisSearchResponse[] = [];
   termino:string = ""
-  error:string=""
+  errorString:string=""
+  error:boolean=false
 
 
 
@@ -28,15 +29,15 @@ export class PorPaisComponent implements OnInit {
   }
 
   buscar (termino:string){
-    debugger
-    this.termino=termino;
     this.paisService.buscarPais( this.termino ).subscribe({
       next: (resp) =>{
           this.paises = resp;
-          this.error = ""
+          this.errorString = ""
+          this.error = false
       },
-      error: (err) =>{
-        this.error = err
+      error: (error) =>{
+        this.error = true
+        this.errorString = this.termino
       }
   })
   }
