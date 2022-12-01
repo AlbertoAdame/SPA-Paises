@@ -13,23 +13,17 @@ export class PorPaisComponent implements OnInit {
   ngOnInit(): void {
   }
   paises : PaisSearchResponse[] = [];
-  termino:string = ""
   errorString:string=""
   error:boolean=false
 
-
-
-  // buscarPais(){
-  //   this.paisService.buscarPais(this.query)
-  //   this.query=""
-  // }
 
   get results():PaisSearchResponse[]{//preguntar aqui de que tipo devuelve
     return this.paises
   }
 
   buscar (termino:string){
-    this.paisService.buscarPais( this.termino ).subscribe({
+    console.log(termino)
+    this.paisService.buscarPais( termino ).subscribe({
       next: (resp) =>{
           this.paises = resp;
           this.errorString = ""
@@ -37,7 +31,7 @@ export class PorPaisComponent implements OnInit {
       },
       error: (error) =>{
         this.error = true
-        this.errorString = this.termino
+        this.errorString = termino
       }
   })
   }

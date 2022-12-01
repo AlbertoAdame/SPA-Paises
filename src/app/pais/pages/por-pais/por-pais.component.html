@@ -1,41 +1,9 @@
 <h5>Por País</h5>
-<form (ngSubmit)="buscar(termino)">
-    <input 
-        type="text"
-        class="form-control"
-        placeholder="Buscar gifs..." 
-        name="nuevo"
-        [(ngModel)]="termino"
-    >
-</form>
+
+<app-busqueda (enviarHijo)="buscar($event)"></app-busqueda>
+
+<app-tabla [paises]="paises"></app-tabla>
 
 
-<div class="alert alert-danger" *ngIf="error">
-    No se encontró nada con el término {{errorString}}
-</div>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th> # </th>
-            <th> Bandera </th>
-            <th> Nombre </th>
-            <th> Población </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let pais of results; let i=index"> <!-- Esto es lo que tenemos que repetir por cada país que encuentre -->
-            <td> {{i+1}} </td> <!-- Aquí obtendremos el número de resultado -->
-            <td>
-            <img class="small-flags" [src]="pais.flags.png" width="50px"> <!-- Aquí obtendremos la url de la bandera --> 
-            </td>
-            <td> {{pais.capital}}, {{pais.name.common}} </td> <!-- La capital, el nombre del país y la población lo obtendremos de la api -->
-            <td> {{pais.population|number}}</td>
-            <td>
-                <a [routerLink]="['/pais',pais.ccn3]">Ver...</a> 
-            </td>
-        </tr>
-    </tbody>
-</table>
 

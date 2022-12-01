@@ -14,12 +14,24 @@ export class PaisService {
 
   buscarPais(query:string):Observable<PaisSearchResponse[]>{
     let clean = query.trim().toLowerCase();
+    if(clean!==''){//preguntar pq cuando lo meto aquí me da error, y como lo arreglo
+      
+    }  
+    
+    return this.http.get<PaisSearchResponse[]>(`${this.url}name/${clean}`) 
+        
+  } 
+
+  buscarCapital(query:string):Observable<PaisSearchResponse[]>{
+    let clean = query.trim().toLowerCase();
     if(clean!==''){
 
     }
 
-    return this.http.get<PaisSearchResponse[]>(`${this.url}name/${query}`)    
+    return this.http.get<PaisSearchResponse[]>(`${this.url}capital/${query}`)    
   } 
+
+
 
   country(code:string):Observable<PaisSearchResponse[]>{
     return this.http.get<PaisSearchResponse[]>(`${this.url}alpha/${code}`)  
