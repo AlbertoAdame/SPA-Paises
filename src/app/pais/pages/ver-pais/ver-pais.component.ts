@@ -9,7 +9,11 @@ import { PaisService } from '../../services/pais.service';
 })
 export class VerPaisComponent implements OnInit{
   code:string='';
-  country:any;
+  country!:PaisSearchResponse;
+  //La exclamación hay que ponerla pq javaScript avisa de que la interfza (PaisSearchResponse) 
+  //no está inicializada, pq si te fijas en interfaz no hay ? , por lo que todos los datosson obligatorios,
+  // y para arregarlo tendríamos que poner = { name.... } con todos los atributos de la interfaz
+  
   constructor(private paisServicio:PaisService,private route:ActivatedRoute) { 
     console.log(route.snapshot.params['id'])
   }
@@ -18,18 +22,15 @@ export class VerPaisComponent implements OnInit{
     this.code=this.route.snapshot.params['id']
     this.paisServicio.country(this.code)
     .subscribe({
-      next(resp) {
+      next:(resp) => {
         this.country=resp[0];
       },
-      error(err) {
+      error:(err) => {
         console.log(err)
       },
     })
   }
 
-  // get pais():PaisSearchResponse{
-    
-  // }
   
 
 

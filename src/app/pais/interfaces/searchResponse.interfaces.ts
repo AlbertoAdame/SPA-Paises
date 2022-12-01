@@ -8,71 +8,281 @@
 // match the expected interface, even if the JSON is valid.
 
 export interface PaisSearchResponse {
-    name:           string;
-    topLevelDomain: string[];
-    alpha2Code:     string;
-    alpha3Code:     string;
-    callingCodes:   string[];
-    capital:        string;
-    altSpellings:   string[];
-    subregion:      string;
-    region:         string;
-    population:     number;
-    latlng:         number[];
-    demonym:        string;
-    area:           number;
-    gini:           number;
-    timezones:      string[];
-    borders:        string[];
-    nativeName:     string;
-    numericCode:    string;
-    flags:          Flags;
-    currencies:     Currency[];
-    languages:      Language[];
-    translations:   Translations;
-    flag:           string;
-    regionalBlocs:  RegionalBloc[];
-    cioc:           string;
-    independent:    boolean;
+    name:         Name;
+    tld?:         string[];
+    cca2:         string;
+    ccn3?:        string;
+    cca3:         string;
+    cioc?:        string;
+    independent?: boolean;
+    status:       Status;
+    unMember:     boolean;
+    currencies?:  Currencies;
+    idd:          Idd;
+    capital?:     string[];
+    altSpellings: string[];
+    region:       Region;
+    subregion?:   string;
+    languages:    { [key: string]: string };
+    translations: { [key: string]: Translation };
+    latlng:       number[];
+    landlocked:   boolean;
+    borders?:     string[];
+    area:         number;
+    demonyms?:    Demonyms;
+    flag:         string;
+    maps:         Maps;
+    population:   number;
+    gini?:        { [key: string]: number };
+    fifa?:        string;
+    car:          Car;
+    timezones:    string[];
+    continents:   Continent[];
+    flags:        CoatOfArms;
+    coatOfArms:   CoatOfArms;
+    startOfWeek:  StartOfWeek;
+    capitalInfo:  CapitalInfo;
+    postalCode?:  PostalCode;
 }
 
-export interface Currency {
-    code:   string;
+export interface CapitalInfo {
+    latlng?: number[];
+}
+
+export interface Car {
+    signs: string[];
+    side:  Side;
+}
+
+export enum Side {
+    Left = "left",
+    Right = "right",
+}
+
+export interface CoatOfArms {
+    png?: string;
+    svg?: string;
+}
+
+export enum Continent {
+    Africa = "Africa",
+    Antarctica = "Antarctica",
+    Asia = "Asia",
+    Europe = "Europe",
+    NorthAmerica = "North America",
+    Oceania = "Oceania",
+    SouthAmerica = "South America",
+}
+
+export interface Currencies {
+    MRU?: Aed;
+    ARS?: Aed;
+    SEK?: Aed;
+    MVR?: Aed;
+    MXN?: Aed;
+    NZD?: Aed;
+    USD?: Aed;
+    XPF?: Aed;
+    EUR?: Aed;
+    PKR?: Aed;
+    ZMW?: Aed;
+    SCR?: Aed;
+    NOK?: Aed;
+    UZS?: Aed;
+    VUV?: Aed;
+    AUD?: Aed;
+    SGD?: Aed;
+    SRD?: Aed;
+    DZD?: Aed;
+    MAD?: Aed;
+    CRC?: Aed;
+    LYD?: Aed;
+    QAR?: Aed;
+    DKK?: Aed;
+    MUR?: Aed;
+    KZT?: Aed;
+    ALL?: Aed;
+    PGK?: Aed;
+    BIF?: Aed;
+    INR?: Aed;
+    UYU?: Aed;
+    XCD?: Aed;
+    MOP?: Aed;
+    GBP?: Aed;
+    IMP?: Aed;
+    SYP?: Aed;
+    XOF?: Aed;
+    KGS?: Aed;
+    TTD?: Aed;
+    EGP?: Aed;
+    ILS?: Aed;
+    JOD?: Aed;
+    MGA?: Aed;
+    HRK?: Aed;
+    FOK?: Aed;
+    HTG?: Aed;
+    CUC?: Aed;
+    CUP?: Aed;
+    TWD?: Aed;
+    SZL?: Aed;
+    ZAR?: Aed;
+    UAH?: Aed;
+    BMD?: Aed;
+    KRW?: Aed;
+    PEN?: Aed;
+    IQD?: Aed;
+    MDL?: Aed;
+    VES?: Aed;
+    GYD?: Aed;
+    LKR?: Aed;
+    SDG?: BAM;
+    ERN?: Aed;
+    SOS?: Aed;
+    KMF?: Aed;
+    NIO?: Aed;
+    RUB?: Aed;
+    UGX?: Aed;
+    CHF?: Aed;
+    TJS?: Aed;
+    SSP?: Aed;
+    CZK?: Aed;
+    BWP?: Aed;
+    TND?: Aed;
+    MZN?: Aed;
+    HNL?: Aed;
+    AZN?: Aed;
+    MKD?: Aed;
+    GMD?: Aed;
+    LRD?: Aed;
+    CVE?: Aed;
+    BSD?: Aed;
+    GEL?: Aed;
+    KID?: Aed;
+    TZS?: Aed;
+    CNY?: Aed;
+    GTQ?: Aed;
+    STN?: Aed;
+    SLL?: Aed;
+    XAF?: Aed;
+    THB?: Aed;
+    IDR?: Aed;
+    TMT?: Aed;
+    DOP?: Aed;
+    GHS?: Aed;
+    JEP?: Aed;
+    TRY?: Aed;
+    IRR?: Aed;
+    KES?: Aed;
+    BGN?: Aed;
+    ZWL?: Aed;
+    AOA?: Aed;
+    NGN?: Aed;
+    PLN?: Aed;
+    SHP?: Aed;
+    LBP?: Aed;
+    WST?: Aed;
+    PHP?: Aed;
+    GGP?: Aed;
+    KWD?: Aed;
+    OMR?: Aed;
+    AFN?: Aed;
+    RSD?: Aed;
+    AMD?: Aed;
+    BDT?: Aed;
+    LAK?: Aed;
+    CLP?: Aed;
+    PAB?: Aed;
+    NPR?: Aed;
+    MMK?: Aed;
+    GNF?: Aed;
+    AED?: Aed;
+    BAM?: BAM;
+    MWK?: Aed;
+    CDF?: Aed;
+    VND?: Aed;
+    ANG?: Aed;
+    BRL?: Aed;
+    BZD?: Aed;
+    PYG?: Aed;
+    BND?: Aed;
+    BOB?: Aed;
+    DJF?: Aed;
+    RWF?: Aed;
+    ISK?: Aed;
+    BYN?: Aed;
+    HKD?: Aed;
+    LSL?: Aed;
+    FJD?: Aed;
+    COP?: Aed;
+    ETB?: Aed;
+    KPW?: Aed;
+    NAD?: Aed;
+    YER?: Aed;
+}
+
+export interface Aed {
     name:   string;
     symbol: string;
 }
 
-export interface Flags {
-    svg: string;
-    png: string;
+export interface BAM {
+    name: string;
 }
 
-export interface Language {
-    iso639_1:   string;
-    iso639_2:   string;
-    name:       string;
-    nativeName: string;
+export interface Demonyms {
+    eng:  Eng;
+    fra?: Eng;
 }
 
-export interface RegionalBloc {
-    acronym:        string;
-    name:           string;
-    otherNames:     string[];
-    otherAcronyms?: string[];
+export interface Eng {
+    f: string;
+    m: string;
 }
 
-export interface Translations {
-    br: string;
-    pt: string;
-    nl: string;
-    hr: string;
-    fa: string;
-    de: string;
-    es: string;
-    fr: string;
-    ja: string;
-    it: string;
-    hu: string;
+export interface Idd {
+    root?:     string;
+    suffixes?: string[];
+}
+
+export interface Maps {
+    googleMaps:     string;
+    openStreetMaps: string;
+}
+
+export interface Name {
+    common:     string;
+    official:   string;
+    nativeName: { [key: string]: Translation };
+}
+
+export interface Translation {
+    official: string;
+    common:   string;
+}
+
+export interface PostalCode {
+    format: string;
+    regex?: string;
+}
+
+export enum Region {
+    Africa = "Africa",
+    Americas = "Americas",
+    Antarctic = "Antarctic",
+    Asia = "Asia",
+    Europe = "Europe",
+    Oceania = "Oceania",
+}
+
+export enum StartOfWeek {
+    Monday = "monday",
+    Saturday = "saturday",
+    Sunday = "sunday",
+}
+
+export enum Status {
+    OfficiallyAssigned = "officially-assigned",
+    UserAssigned = "user-assigned",
 }
 
 // Converts JSON strings to/from your types
@@ -221,65 +431,262 @@ function r(name: string) {
 
 const typeMap: any = {
     "PaisSearchResponse": o([
-        { json: "name", js: "name", typ: "" },
-        { json: "topLevelDomain", js: "topLevelDomain", typ: a("") },
-        { json: "alpha2Code", js: "alpha2Code", typ: "" },
-        { json: "alpha3Code", js: "alpha3Code", typ: "" },
-        { json: "callingCodes", js: "callingCodes", typ: a("") },
-        { json: "capital", js: "capital", typ: "" },
+        { json: "name", js: "name", typ: r("Name") },
+        { json: "tld", js: "tld", typ: u(undefined, a("")) },
+        { json: "cca2", js: "cca2", typ: "" },
+        { json: "ccn3", js: "ccn3", typ: u(undefined, "") },
+        { json: "cca3", js: "cca3", typ: "" },
+        { json: "cioc", js: "cioc", typ: u(undefined, "") },
+        { json: "independent", js: "independent", typ: u(undefined, true) },
+        { json: "status", js: "status", typ: r("Status") },
+        { json: "unMember", js: "unMember", typ: true },
+        { json: "currencies", js: "currencies", typ: u(undefined, r("Currencies")) },
+        { json: "idd", js: "idd", typ: r("Idd") },
+        { json: "capital", js: "capital", typ: u(undefined, a("")) },
         { json: "altSpellings", js: "altSpellings", typ: a("") },
-        { json: "subregion", js: "subregion", typ: "" },
-        { json: "region", js: "region", typ: "" },
-        { json: "population", js: "population", typ: 0 },
-        { json: "latlng", js: "latlng", typ: a(0) },
-        { json: "demonym", js: "demonym", typ: "" },
-        { json: "area", js: "area", typ: 0 },
-        { json: "gini", js: "gini", typ: 3.14 },
-        { json: "timezones", js: "timezones", typ: a("") },
-        { json: "borders", js: "borders", typ: a("") },
-        { json: "nativeName", js: "nativeName", typ: "" },
-        { json: "numericCode", js: "numericCode", typ: "" },
-        { json: "flags", js: "flags", typ: r("Flags") },
-        { json: "currencies", js: "currencies", typ: a(r("Currency")) },
-        { json: "languages", js: "languages", typ: a(r("Language")) },
-        { json: "translations", js: "translations", typ: r("Translations") },
+        { json: "region", js: "region", typ: r("Region") },
+        { json: "subregion", js: "subregion", typ: u(undefined, "") },
+        { json: "languages", js: "languages", typ: m("") },
+        { json: "translations", js: "translations", typ: m(r("Translation")) },
+        { json: "latlng", js: "latlng", typ: a(3.14) },
+        { json: "landlocked", js: "landlocked", typ: true },
+        { json: "borders", js: "borders", typ: u(undefined, a("")) },
+        { json: "area", js: "area", typ: 3.14 },
+        { json: "demonyms", js: "demonyms", typ: u(undefined, r("Demonyms")) },
         { json: "flag", js: "flag", typ: "" },
-        { json: "regionalBlocs", js: "regionalBlocs", typ: a(r("RegionalBloc")) },
-        { json: "cioc", js: "cioc", typ: "" },
-        { json: "independent", js: "independent", typ: true },
+        { json: "maps", js: "maps", typ: r("Maps") },
+        { json: "population", js: "population", typ: 0 },
+        { json: "gini", js: "gini", typ: u(undefined, m(3.14)) },
+        { json: "fifa", js: "fifa", typ: u(undefined, "") },
+        { json: "car", js: "car", typ: r("Car") },
+        { json: "timezones", js: "timezones", typ: a("") },
+        { json: "continents", js: "continents", typ: a(r("Continent")) },
+        { json: "flags", js: "flags", typ: r("CoatOfArms") },
+        { json: "coatOfArms", js: "coatOfArms", typ: r("CoatOfArms") },
+        { json: "startOfWeek", js: "startOfWeek", typ: r("StartOfWeek") },
+        { json: "capitalInfo", js: "capitalInfo", typ: r("CapitalInfo") },
+        { json: "postalCode", js: "postalCode", typ: u(undefined, r("PostalCode")) },
     ], false),
-    "Currency": o([
-        { json: "code", js: "code", typ: "" },
+    "CapitalInfo": o([
+        { json: "latlng", js: "latlng", typ: u(undefined, a(3.14)) },
+    ], false),
+    "Car": o([
+        { json: "signs", js: "signs", typ: a("") },
+        { json: "side", js: "side", typ: r("Side") },
+    ], false),
+    "CoatOfArms": o([
+        { json: "png", js: "png", typ: u(undefined, "") },
+        { json: "svg", js: "svg", typ: u(undefined, "") },
+    ], false),
+    "Currencies": o([
+        { json: "MRU", js: "MRU", typ: u(undefined, r("Aed")) },
+        { json: "ARS", js: "ARS", typ: u(undefined, r("Aed")) },
+        { json: "SEK", js: "SEK", typ: u(undefined, r("Aed")) },
+        { json: "MVR", js: "MVR", typ: u(undefined, r("Aed")) },
+        { json: "MXN", js: "MXN", typ: u(undefined, r("Aed")) },
+        { json: "NZD", js: "NZD", typ: u(undefined, r("Aed")) },
+        { json: "USD", js: "USD", typ: u(undefined, r("Aed")) },
+        { json: "XPF", js: "XPF", typ: u(undefined, r("Aed")) },
+        { json: "EUR", js: "EUR", typ: u(undefined, r("Aed")) },
+        { json: "PKR", js: "PKR", typ: u(undefined, r("Aed")) },
+        { json: "ZMW", js: "ZMW", typ: u(undefined, r("Aed")) },
+        { json: "SCR", js: "SCR", typ: u(undefined, r("Aed")) },
+        { json: "NOK", js: "NOK", typ: u(undefined, r("Aed")) },
+        { json: "UZS", js: "UZS", typ: u(undefined, r("Aed")) },
+        { json: "VUV", js: "VUV", typ: u(undefined, r("Aed")) },
+        { json: "AUD", js: "AUD", typ: u(undefined, r("Aed")) },
+        { json: "SGD", js: "SGD", typ: u(undefined, r("Aed")) },
+        { json: "SRD", js: "SRD", typ: u(undefined, r("Aed")) },
+        { json: "DZD", js: "DZD", typ: u(undefined, r("Aed")) },
+        { json: "MAD", js: "MAD", typ: u(undefined, r("Aed")) },
+        { json: "CRC", js: "CRC", typ: u(undefined, r("Aed")) },
+        { json: "LYD", js: "LYD", typ: u(undefined, r("Aed")) },
+        { json: "QAR", js: "QAR", typ: u(undefined, r("Aed")) },
+        { json: "DKK", js: "DKK", typ: u(undefined, r("Aed")) },
+        { json: "MUR", js: "MUR", typ: u(undefined, r("Aed")) },
+        { json: "KZT", js: "KZT", typ: u(undefined, r("Aed")) },
+        { json: "ALL", js: "ALL", typ: u(undefined, r("Aed")) },
+        { json: "PGK", js: "PGK", typ: u(undefined, r("Aed")) },
+        { json: "BIF", js: "BIF", typ: u(undefined, r("Aed")) },
+        { json: "INR", js: "INR", typ: u(undefined, r("Aed")) },
+        { json: "UYU", js: "UYU", typ: u(undefined, r("Aed")) },
+        { json: "XCD", js: "XCD", typ: u(undefined, r("Aed")) },
+        { json: "MOP", js: "MOP", typ: u(undefined, r("Aed")) },
+        { json: "GBP", js: "GBP", typ: u(undefined, r("Aed")) },
+        { json: "IMP", js: "IMP", typ: u(undefined, r("Aed")) },
+        { json: "SYP", js: "SYP", typ: u(undefined, r("Aed")) },
+        { json: "XOF", js: "XOF", typ: u(undefined, r("Aed")) },
+        { json: "KGS", js: "KGS", typ: u(undefined, r("Aed")) },
+        { json: "TTD", js: "TTD", typ: u(undefined, r("Aed")) },
+        { json: "EGP", js: "EGP", typ: u(undefined, r("Aed")) },
+        { json: "ILS", js: "ILS", typ: u(undefined, r("Aed")) },
+        { json: "JOD", js: "JOD", typ: u(undefined, r("Aed")) },
+        { json: "MGA", js: "MGA", typ: u(undefined, r("Aed")) },
+        { json: "HRK", js: "HRK", typ: u(undefined, r("Aed")) },
+        { json: "FOK", js: "FOK", typ: u(undefined, r("Aed")) },
+        { json: "HTG", js: "HTG", typ: u(undefined, r("Aed")) },
+        { json: "CUC", js: "CUC", typ: u(undefined, r("Aed")) },
+        { json: "CUP", js: "CUP", typ: u(undefined, r("Aed")) },
+        { json: "TWD", js: "TWD", typ: u(undefined, r("Aed")) },
+        { json: "SZL", js: "SZL", typ: u(undefined, r("Aed")) },
+        { json: "ZAR", js: "ZAR", typ: u(undefined, r("Aed")) },
+        { json: "UAH", js: "UAH", typ: u(undefined, r("Aed")) },
+        { json: "BMD", js: "BMD", typ: u(undefined, r("Aed")) },
+        { json: "KRW", js: "KRW", typ: u(undefined, r("Aed")) },
+        { json: "PEN", js: "PEN", typ: u(undefined, r("Aed")) },
+        { json: "IQD", js: "IQD", typ: u(undefined, r("Aed")) },
+        { json: "MDL", js: "MDL", typ: u(undefined, r("Aed")) },
+        { json: "VES", js: "VES", typ: u(undefined, r("Aed")) },
+        { json: "GYD", js: "GYD", typ: u(undefined, r("Aed")) },
+        { json: "LKR", js: "LKR", typ: u(undefined, r("Aed")) },
+        { json: "SDG", js: "SDG", typ: u(undefined, r("BAM")) },
+        { json: "ERN", js: "ERN", typ: u(undefined, r("Aed")) },
+        { json: "SOS", js: "SOS", typ: u(undefined, r("Aed")) },
+        { json: "KMF", js: "KMF", typ: u(undefined, r("Aed")) },
+        { json: "NIO", js: "NIO", typ: u(undefined, r("Aed")) },
+        { json: "RUB", js: "RUB", typ: u(undefined, r("Aed")) },
+        { json: "UGX", js: "UGX", typ: u(undefined, r("Aed")) },
+        { json: "CHF", js: "CHF", typ: u(undefined, r("Aed")) },
+        { json: "TJS", js: "TJS", typ: u(undefined, r("Aed")) },
+        { json: "SSP", js: "SSP", typ: u(undefined, r("Aed")) },
+        { json: "CZK", js: "CZK", typ: u(undefined, r("Aed")) },
+        { json: "BWP", js: "BWP", typ: u(undefined, r("Aed")) },
+        { json: "TND", js: "TND", typ: u(undefined, r("Aed")) },
+        { json: "MZN", js: "MZN", typ: u(undefined, r("Aed")) },
+        { json: "HNL", js: "HNL", typ: u(undefined, r("Aed")) },
+        { json: "AZN", js: "AZN", typ: u(undefined, r("Aed")) },
+        { json: "MKD", js: "MKD", typ: u(undefined, r("Aed")) },
+        { json: "GMD", js: "GMD", typ: u(undefined, r("Aed")) },
+        { json: "LRD", js: "LRD", typ: u(undefined, r("Aed")) },
+        { json: "CVE", js: "CVE", typ: u(undefined, r("Aed")) },
+        { json: "BSD", js: "BSD", typ: u(undefined, r("Aed")) },
+        { json: "GEL", js: "GEL", typ: u(undefined, r("Aed")) },
+        { json: "KID", js: "KID", typ: u(undefined, r("Aed")) },
+        { json: "TZS", js: "TZS", typ: u(undefined, r("Aed")) },
+        { json: "CNY", js: "CNY", typ: u(undefined, r("Aed")) },
+        { json: "GTQ", js: "GTQ", typ: u(undefined, r("Aed")) },
+        { json: "STN", js: "STN", typ: u(undefined, r("Aed")) },
+        { json: "SLL", js: "SLL", typ: u(undefined, r("Aed")) },
+        { json: "XAF", js: "XAF", typ: u(undefined, r("Aed")) },
+        { json: "THB", js: "THB", typ: u(undefined, r("Aed")) },
+        { json: "IDR", js: "IDR", typ: u(undefined, r("Aed")) },
+        { json: "TMT", js: "TMT", typ: u(undefined, r("Aed")) },
+        { json: "DOP", js: "DOP", typ: u(undefined, r("Aed")) },
+        { json: "GHS", js: "GHS", typ: u(undefined, r("Aed")) },
+        { json: "JEP", js: "JEP", typ: u(undefined, r("Aed")) },
+        { json: "TRY", js: "TRY", typ: u(undefined, r("Aed")) },
+        { json: "IRR", js: "IRR", typ: u(undefined, r("Aed")) },
+        { json: "KES", js: "KES", typ: u(undefined, r("Aed")) },
+        { json: "BGN", js: "BGN", typ: u(undefined, r("Aed")) },
+        { json: "ZWL", js: "ZWL", typ: u(undefined, r("Aed")) },
+        { json: "AOA", js: "AOA", typ: u(undefined, r("Aed")) },
+        { json: "NGN", js: "NGN", typ: u(undefined, r("Aed")) },
+        { json: "PLN", js: "PLN", typ: u(undefined, r("Aed")) },
+        { json: "SHP", js: "SHP", typ: u(undefined, r("Aed")) },
+        { json: "LBP", js: "LBP", typ: u(undefined, r("Aed")) },
+        { json: "WST", js: "WST", typ: u(undefined, r("Aed")) },
+        { json: "PHP", js: "PHP", typ: u(undefined, r("Aed")) },
+        { json: "GGP", js: "GGP", typ: u(undefined, r("Aed")) },
+        { json: "KWD", js: "KWD", typ: u(undefined, r("Aed")) },
+        { json: "OMR", js: "OMR", typ: u(undefined, r("Aed")) },
+        { json: "AFN", js: "AFN", typ: u(undefined, r("Aed")) },
+        { json: "RSD", js: "RSD", typ: u(undefined, r("Aed")) },
+        { json: "AMD", js: "AMD", typ: u(undefined, r("Aed")) },
+        { json: "BDT", js: "BDT", typ: u(undefined, r("Aed")) },
+        { json: "LAK", js: "LAK", typ: u(undefined, r("Aed")) },
+        { json: "CLP", js: "CLP", typ: u(undefined, r("Aed")) },
+        { json: "PAB", js: "PAB", typ: u(undefined, r("Aed")) },
+        { json: "NPR", js: "NPR", typ: u(undefined, r("Aed")) },
+        { json: "MMK", js: "MMK", typ: u(undefined, r("Aed")) },
+        { json: "GNF", js: "GNF", typ: u(undefined, r("Aed")) },
+        { json: "AED", js: "AED", typ: u(undefined, r("Aed")) },
+        { json: "BAM", js: "BAM", typ: u(undefined, r("BAM")) },
+        { json: "MWK", js: "MWK", typ: u(undefined, r("Aed")) },
+        { json: "CDF", js: "CDF", typ: u(undefined, r("Aed")) },
+        { json: "VND", js: "VND", typ: u(undefined, r("Aed")) },
+        { json: "ANG", js: "ANG", typ: u(undefined, r("Aed")) },
+        { json: "BRL", js: "BRL", typ: u(undefined, r("Aed")) },
+        { json: "BZD", js: "BZD", typ: u(undefined, r("Aed")) },
+        { json: "PYG", js: "PYG", typ: u(undefined, r("Aed")) },
+        { json: "BND", js: "BND", typ: u(undefined, r("Aed")) },
+        { json: "BOB", js: "BOB", typ: u(undefined, r("Aed")) },
+        { json: "DJF", js: "DJF", typ: u(undefined, r("Aed")) },
+        { json: "RWF", js: "RWF", typ: u(undefined, r("Aed")) },
+        { json: "ISK", js: "ISK", typ: u(undefined, r("Aed")) },
+        { json: "BYN", js: "BYN", typ: u(undefined, r("Aed")) },
+        { json: "HKD", js: "HKD", typ: u(undefined, r("Aed")) },
+        { json: "LSL", js: "LSL", typ: u(undefined, r("Aed")) },
+        { json: "FJD", js: "FJD", typ: u(undefined, r("Aed")) },
+        { json: "COP", js: "COP", typ: u(undefined, r("Aed")) },
+        { json: "ETB", js: "ETB", typ: u(undefined, r("Aed")) },
+        { json: "KPW", js: "KPW", typ: u(undefined, r("Aed")) },
+        { json: "NAD", js: "NAD", typ: u(undefined, r("Aed")) },
+        { json: "YER", js: "YER", typ: u(undefined, r("Aed")) },
+    ], false),
+    "Aed": o([
         { json: "name", js: "name", typ: "" },
         { json: "symbol", js: "symbol", typ: "" },
     ], false),
-    "Flags": o([
-        { json: "svg", js: "svg", typ: "" },
-        { json: "png", js: "png", typ: "" },
-    ], false),
-    "Language": o([
-        { json: "iso639_1", js: "iso639_1", typ: "" },
-        { json: "iso639_2", js: "iso639_2", typ: "" },
+    "BAM": o([
         { json: "name", js: "name", typ: "" },
-        { json: "nativeName", js: "nativeName", typ: "" },
     ], false),
-    "RegionalBloc": o([
-        { json: "acronym", js: "acronym", typ: "" },
-        { json: "name", js: "name", typ: "" },
-        { json: "otherNames", js: "otherNames", typ: a("") },
-        { json: "otherAcronyms", js: "otherAcronyms", typ: u(undefined, a("")) },
+    "Demonyms": o([
+        { json: "eng", js: "eng", typ: r("Eng") },
+        { json: "fra", js: "fra", typ: u(undefined, r("Eng")) },
     ], false),
-    "Translations": o([
-        { json: "br", js: "br", typ: "" },
-        { json: "pt", js: "pt", typ: "" },
-        { json: "nl", js: "nl", typ: "" },
-        { json: "hr", js: "hr", typ: "" },
-        { json: "fa", js: "fa", typ: "" },
-        { json: "de", js: "de", typ: "" },
-        { json: "es", js: "es", typ: "" },
-        { json: "fr", js: "fr", typ: "" },
-        { json: "ja", js: "ja", typ: "" },
-        { json: "it", js: "it", typ: "" },
-        { json: "hu", js: "hu", typ: "" },
+    "Eng": o([
+        { json: "f", js: "f", typ: "" },
+        { json: "m", js: "m", typ: "" },
     ], false),
+    "Idd": o([
+        { json: "root", js: "root", typ: u(undefined, "") },
+        { json: "suffixes", js: "suffixes", typ: u(undefined, a("")) },
+    ], false),
+    "Maps": o([
+        { json: "googleMaps", js: "googleMaps", typ: "" },
+        { json: "openStreetMaps", js: "openStreetMaps", typ: "" },
+    ], false),
+    "Name": o([
+        { json: "common", js: "common", typ: "" },
+        { json: "official", js: "official", typ: "" },
+        { json: "nativeName", js: "nativeName", typ: m(r("Translation")) },
+    ], false),
+    "Translation": o([
+        { json: "official", js: "official", typ: "" },
+        { json: "common", js: "common", typ: "" },
+    ], false),
+    "PostalCode": o([
+        { json: "format", js: "format", typ: "" },
+        { json: "regex", js: "regex", typ: u(undefined, "") },
+    ], false),
+    "Side": [
+        "left",
+        "right",
+    ],
+    "Continent": [
+        "Africa",
+        "Antarctica",
+        "Asia",
+        "Europe",
+        "North America",
+        "Oceania",
+        "South America",
+    ],
+    "Region": [
+        "Africa",
+        "Americas",
+        "Antarctic",
+        "Asia",
+        "Europe",
+        "Oceania",
+    ],
+    "StartOfWeek": [
+        "monday",
+        "saturday",
+        "sunday",
+    ],
+    "Status": [
+        "officially-assigned",
+        "user-assigned",
+    ],
 };

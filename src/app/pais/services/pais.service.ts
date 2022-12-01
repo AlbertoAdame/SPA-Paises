@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PaisService {
-  url:string="https://restcountries.com/v2/name/";
+  url:string="https://restcountries.com/v3.1/";
   results: PaisSearchResponse[] = []
   constructor(private http : HttpClient) { }
   
@@ -17,10 +17,8 @@ export class PaisService {
     if(clean!==''){
 
     }
-    
-    // this.http.get<PaisSearchResponse[]>(`${this.url}${query}`).subscribe((resp) => this.results =resp);
-    // console.log(this.results)
-    return this.http.get<PaisSearchResponse[]>(`${this.url}${query}`)    
+
+    return this.http.get<PaisSearchResponse[]>(`${this.url}name/${query}`)    
   } 
 
   country(code:string):Observable<PaisSearchResponse[]>{
